@@ -1,0 +1,342 @@
+:root {
+    --obsidian: #050505;
+    --gold: #d4af37;
+    --gold-rgb: 212, 175, 55;
+    --red: #ff4444;
+    --glass: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+    font-family: 'Outfit', sans-serif;
+    background: var(--obsidian);
+    color: #fff;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+}
+
+#antigravity-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    /* On top but click-through */
+    pointer-events: none;
+}
+
+.scroll-wrapper {
+    position: relative;
+    z-index: 10;
+}
+
+section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ============ LANDING PAGE ============ */
+#landing {
+    justify-content: flex-start;
+    padding: 4vh 5vw;
+}
+
+.magnetic-header {
+    text-align: center;
+    padding: 2rem;
+    background: radial-gradient(circle at 50% 50%, var(--glass), transparent);
+    border-radius: 50%;
+    margin-bottom: 2rem;
+    animation: float 8s ease-in-out infinite;
+}
+
+.brand-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    letter-spacing: 0.25em;
+    font-weight: 900;
+    text-shadow: 0 0 30px rgba(var(--gold-rgb), 0.3);
+}
+
+.gold-accent {
+    color: var(--gold);
+}
+
+.brand-subtitle {
+    font-size: 0.75rem;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-top: 1rem;
+    opacity: 0.8;
+}
+
+.action-hub {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    max-width: 900px;
+    margin: auto 0;
+}
+
+.orb-btn {
+    position: relative;
+    width: 140px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: linear-gradient(145deg, rgba(20, 20, 25, 0.9), rgba(5, 5, 8, 0.95));
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: drift 6s ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+}
+
+.orb-btn:hover {
+    transform: scale(1.15) translateY(-10px);
+    border-color: var(--gold);
+    box-shadow: 0 0 40px rgba(var(--gold-rgb), 0.4);
+}
+
+.orb-icon {
+    font-size: 2.2rem;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.orb-btn:hover .orb-icon {
+    transform: scale(1.1);
+}
+
+.orb-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
+
+.primary-action {
+    border-color: rgba(var(--gold-rgb), 0.4);
+    background: linear-gradient(145deg, rgba(var(--gold-rgb), 0.15), rgba(var(--gold-rgb), 0.05));
+}
+
+.pay-btn i {
+    color: #4CAF50;
+}
+
+.glass-footer {
+    padding: 2rem;
+    text-align: center;
+    font-family: 'Cinzel', serif;
+}
+
+.glass-footer p {
+    font-size: 0.7rem;
+    letter-spacing: 0.5em;
+    color: rgba(var(--gold-rgb), 0.6);
+    margin-bottom: 1rem;
+}
+
+.game-hint {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-family: 'Outfit', sans-serif;
+}
+
+/* ============ GAME PAGE ============ */
+#game {
+    justify-content: center;
+}
+
+#hud {
+    position: absolute;
+    inset: 0;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+#hud.hidden {
+    opacity: 0;
+}
+
+.hud-top {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Cinzel', serif;
+    font-size: 1.4rem;
+    color: var(--gold);
+    font-weight: 900;
+}
+
+.pause-btn {
+    position: absolute;
+    top: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+    background: rgba(var(--gold-rgb), 0.1);
+    backdrop-filter: blur(10px);
+    color: var(--gold);
+    font-size: 1.2rem;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: all 0.3s ease;
+}
+
+.pause-btn:hover {
+    background: var(--gold);
+    color: #000;
+    transform: translateX(-50%) scale(1.1);
+}
+
+.overlay {
+    position: absolute;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(20px);
+    padding: 4rem;
+    border-radius: 40px;
+    border: 1px solid var(--gold);
+    cursor: pointer;
+    pointer-events: auto;
+    animation: fadeIn 0.4s ease;
+}
+
+.overlay.hidden {
+    display: none;
+}
+
+.overlay h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.1em;
+}
+
+#game-over h2 {
+    color: var(--red);
+}
+
+#paused h2 {
+    color: var(--gold);
+}
+
+/* ============ ANIMATIONS ============ */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes drift {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    33% {
+        transform: translate(3px, -5px);
+    }
+
+    66% {
+        transform: translate(-3px, 3px);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ============ MOBILE ============ */
+@media (max-width: 768px) {
+    #landing {
+        zoom: 0.8;
+        padding: 2vh 4vw;
+    }
+
+    .action-hub {
+        gap: 1.2rem;
+    }
+
+    .orb-btn {
+        width: 120px;
+    }
+
+    .brand-title {
+        font-size: 2.5rem;
+    }
+
+    .overlay {
+        width: 90%;
+        padding: 2rem;
+    }
+
+    .overlay h2 {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-height: 700px) {
+    #landing {
+        gap: 1rem;
+    }
+
+    .action-hub {
+        gap: 1rem;
+    }
+
+    .orb-btn {
+        width: 110px;
+    }
+}

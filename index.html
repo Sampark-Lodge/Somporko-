@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SAMPARK LODGE | Zero-G Experience</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Outfit:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Canvas for Orbital Game & Particle Physics -->
+    <canvas id="antigravity-canvas"></canvas>
+
+    <main class="scroll-wrapper">
+        <!-- Landing Section -->
+        <section id="landing">
+            <!-- Floating Header -->
+            <header class="magnetic-header" data-strength="20">
+                <h1 class="brand-title">SAMPARK<span class="gold-accent">LODGE</span></h1>
+                <p class="brand-subtitle">Comfortable Stay &bullet; Easy Access &bullet; Extra Parking</p>
+            </header>
+
+            <!-- Action Hub: The "Constellation" of Buttons -->
+            <nav class="action-hub">
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Sampark+Lodge+Chinsurah+Hooghly"
+                    class="orb-btn" target="_blank">
+                    <div class="orb-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <span class="orb-label">Directions</span>
+                </a>
+                <a href="https://g.page/r/CXIP9_KZOQYBEBI/review" target="_blank" class="orb-btn" style="--delay: 0.1s">
+                    <div class="orb-icon"><i class="fa-solid fa-star"></i></div>
+                    <span class="orb-label">Rate Us</span>
+                </a>
+                <a href="tel:9830779721" class="orb-btn primary-action" style="--delay: 0.2s">
+                    <div class="orb-icon"><i class="fa-solid fa-phone"></i></div>
+                    <span class="orb-label">Call Now</span>
+                </a>
+                <a href="https://www.facebook.com/people/Sampark-Lodge/61585573116174/" target="_blank" class="orb-btn"
+                    style="--delay: 0.3s">
+                    <div class="orb-icon"><i class="fa-brands fa-facebook"></i></div>
+                    <span class="orb-label">Social</span>
+                </a>
+                <a href="review.html#wifi" class="orb-btn" style="--delay: 0.4s">
+                    <div class="orb-icon"><i class="fa-solid fa-wifi"></i></div>
+                    <span class="orb-label">Wi-Fi</span>
+                </a>
+                <a href="upi://pay?pa=7003642977@ybl&pn=Sampark%20Lodge&tn=Sampark%20Lodge%20Event%20Payment&cu=INR"
+                    class="orb-btn pay-btn" style="--delay: 0.5s">
+                    <div class="orb-icon"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+                    <span class="orb-label">Pay Now</span>
+                </a>
+            </nav>
+
+            <!-- Minimalist Footer -->
+            <footer class="glass-footer">
+                <p>THANK YOU FOR STAYING WITH US</p>
+                <div class="game-hint">Scroll down for Orbital Pop</div>
+            </footer>
+        </section>
+
+        <!-- Game Section -->
+        <section id="game">
+            <div id="hud" class="hidden">
+                <div class="hud-top">
+                    <div class="score">SCORE: <span id="current-score">0</span></div>
+                    <div class="score">BEST: <span id="best-score">0</span></div>
+                </div>
+                <button id="pause-btn" class="pause-btn"><i class="fa-solid fa-pause"></i></button>
+            </div>
+
+            <div id="game-over" class="overlay hidden">
+                <h2>GAME OVER</h2>
+                <p>Tap to Restart</p>
+            </div>
+
+            <div id="paused" class="overlay hidden">
+                <h2>PAUSED</h2>
+                <p>Tap to Resume</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+
+</html>

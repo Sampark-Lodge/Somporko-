@@ -2,222 +2,159 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
     <title>SAMPARK LODGE</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --gold: #d4af37;
-            --gold-dark: #aa8c2c;
-            --dark-brown: #3e2723;
-            --royal-bg: #1a1a1a;
-            --panel-bg: rgba(255, 255, 255, 0.92);
-        }
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet">
 
-        * {
-            box-sizing: border-box;
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
             margin: 0;
             padding: 0;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body {
-            font-family: 'Lato', sans-serif;
-            background-color: #0f0f0f;
-            /* Assumes bg-frame.png is in the same folder */
-            background-image: url('bg-frame.png');
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-            min-height: 100vh;
+            background: white;
+            font-family: 'Cinzel', serif;
             display: flex;
-            align-items: center;
             justify-content: center;
-            color: var(--dark-brown);
+            align-items: center;
+            /* Fix height to viewport to prevent scrolling */
+            height: 100vh;
+            overflow: hidden; 
         }
 
-        .container {
-            width: 100%;
-            max-width: 420px;
-            padding: 20px;
-        }
+        /* MAIN FRAME */
+        .frame {
+            width: 90%;
+            max-width: 400px;
+            /* This ensures the frame fits within the height of the screen */
+            max-height: 95vh; 
+            
+            background:
+                url('./assets/frame.png') center/100% 100% no-repeat,
+                url('./assets/Page-bg.jpg') center/cover no-repeat;
 
-        .card {
-            background: var(--panel-bg);
-            border-radius: 20px;
-            padding: 35px 25px;
+            padding: 40px 25px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 
-                        0 0 0 1px rgba(212, 175, 55, 0.3) inset;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(5px);
-            position: relative;
-        }
+            box-sizing: border-box;
 
-        /* Decorative top border */
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            /* Flex layout inside the frame to distribute space */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around; 
         }
 
         h1 {
             font-family: 'Cinzel', serif;
-            font-weight: 700;
-            font-size: 28px;
-            color: #3e2723;
-            text-transform: uppercase;
+            font-weight: 900;
+            font-size: clamp(24px, 8vw, 34px); /* Scales based on screen size */
+            color: #3b2c11;
             letter-spacing: 2px;
-            margin-bottom: 5px;
-            text-shadow: 1px 1px 0px rgba(212, 175, 55, 0.4);
-            border-bottom: 2px solid var(--gold);
+            border-radius: 12px;
+            padding: 5px 10px;
+            background: rgba(255, 255, 255, 0.55);
+            -webkit-text-stroke: 1px #d4af37;
+            text-shadow: 0 2px 8px rgba(212, 175, 55, .45);
             display: inline-block;
-            padding-bottom: 10px;
+            margin: 0 auto;
         }
 
         .subtitle {
-            font-family: 'Cinzel', serif;
-            font-size: 13px;
-            color: #5d4037;
-            margin-top: 12px;
-            margin-bottom: 30px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
+            font-size: 11px;
+            margin: 10px 0;
+            color: #5a4725;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
+        /* BUTTON GROUP */
         .button-group {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 10px; /* Reduced gap to fit all buttons */
+            width: 100%;
         }
 
+        /* BUTTON */
         .btn {
+            background: url('./assets/button.png') center/100% 100% no-repeat;
+            padding: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            color: #3b2c11;
+            text-decoration: none;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 100%;
-            padding: 16px 20px;
-            text-decoration: none;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 16px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: transform 0.2s, box-shadow 0.2s;
-            position: relative;
-            overflow: hidden;
-            
-            /* Jewel Tone Gradient (Deep Royal Blue/Indigo) */
-            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
-            color: #ffffff;
-            border: 2px solid var(--gold);
-            
-            /* Inner Highlight for 3D feel */
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 
-                        0 4px 6px rgba(0, 0, 0, 0.3);
+            gap: 10px;
         }
 
-        /* Alternate jewel tone for secondary actions if desired, 
-           but keeping uniform for "Royal" consistency usually looks better.
-           Adding subtle variations below. */
-
-        .btn-review {
-            background: linear-gradient(135deg, #4a148c 0%, #6a1b9a 100%); /* Deep Amethyst */
-        }
-        
-        .btn-call {
-            background: linear-gradient(135deg, #004d40 0%, #00695c 100%); /* Deep Emerald */
-        }
-
-        .btn-wifi {
-            background: linear-gradient(135deg, #263238 0%, #37474f 100%); /* Dark Slate */
-        }
-
-        .btn:active {
-            transform: scale(0.98);
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.4);
-        }
-
-        .icon {
-            margin-right: 10px;
-            font-size: 1.2em;
+        .btn i {
+            font-size: 18px;
+            color: #3b2c11;
         }
 
         .footer {
-            margin-top: 35px;
-            font-family: 'Cinzel', serif;
+            margin-top: 15px;
             font-size: 10px;
             letter-spacing: 2px;
-            color: #5d4037;
-            opacity: 0.8;
-            border-top: 1px solid rgba(212, 175, 55, 0.3);
-            padding-top: 15px;
+            color: #3b2c11;
         }
 
-        /* Decorative ornament at bottom */
-        .ornament {
-            font-size: 20px;
-            color: var(--gold);
-            margin-bottom: 10px;
-            display: block;
-            line-height: 1;
+        /* Small mobile optimization */
+        @media (max-height: 650px) {
+            .btn { padding: 8px; font-size: 13px; }
+            .subtitle { margin-bottom: 10px; }
+            h1 { font-size: 24px; }
         }
-
     </style>
 </head>
+
 <body>
 
-    <div class="container">
-        <div class="card">
-            <span class="ornament">❖</span>
-            <h1>Sampark Lodge</h1>
-            <div class="subtitle">Comfortable Stay • Easy Access • Extra Parking</div>
-
-            <div class="button-group">
-                <a href="https://www.google.com/maps/dir/?api=1&destination=Sampark+Lodge+Chinsurah+Hooghly" class="btn" target="_blank">
-                    <span class="icon">📍</span> Get Directions
-                </a>
-
-                <a href="https://g.page/r/CXIP9_KZOQYBEBI/review" class="btn btn-review" target="_blank">
-                    <span class="icon">⭐</span> Leave a Review
-                </a>
-
-                <a href="tel:9830779721" class="btn btn-call">
-                    <span class="icon">📞</span> Call 9830779721
-                </a>
-
-                <a href="tel:7003642977" class="btn btn-call">
-                    <span class="icon">📞</span> Call 7003642977
-                </a>
-
-                <button onclick="accessWifi()" class="btn btn-wifi" style="cursor: pointer;">
-                    <span class="icon">📶</span> Connect to Wi-Fi
-                </button>
-            </div>
-
-            <div class="footer">
-                THANK YOU FOR STAYING WITH US
-            </div>
-        </div>
+<div class="frame">
+    <div>
+        <h1>SAMPARK<br>LODGE</h1>
+        <div class="subtitle">Comfortable Stay • Easy Access • Extra Parking</div>
     </div>
 
-    <script>
-        function accessWifi() {
-            var key = prompt("Please enter the Wi-Fi Access Key:");
-            if (key != null && key.trim() !== "") {
-                // Redirects to placeholder as requested
-                window.location.href = "WIFI_LINK_HERE";
-            }
-        }
-    </script>
+    <div class="button-group">
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Sampark+Lodge+Chinsurah+Hooghly" class="btn" target="_blank">
+            <i class="fa-solid fa-location-dot"></i>
+            Get Directions
+        </a>
+
+        <a href="https://g.page/r/CXIP9_KZOQYBEBI/review" target="_blank" class="btn">
+            <i class="fa-solid fa-star"></i>
+            আপনার মতামত দিন
+        </a>
+
+        <a href="tel:9830779721" class="btn">
+            <i class="fa-solid fa-phone"></i>
+            Call 9830779721
+        </a>
+
+        <a href="https://www.facebook.com/people/Sampark-Lodge/61585573116174/" target="_blank" class="btn">
+            <i class="fa-brands fa-facebook"></i>
+            Follow on Facebook
+        </a>
+
+        <a href="review.html#wifi" class="btn">
+            <i class="fa-solid fa-wifi"></i>
+            Connect to Wi-Fi
+        </a>
+
+        <a href="upi://pay?pa=7003642977@ybl&pn=Sampark%20Lodge&tn=Sampark%20Lodge%20Event%20Payment&cu=INR" class="btn">
+            <i class="fa-solid fa-indian-rupee-sign"></i>
+            Pay Now
+        </a>
+    </div>
+
+    <div class="footer">THANK YOU FOR STAYING WITH US</div>
+</div>
 
 </body>
 </html>
